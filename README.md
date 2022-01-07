@@ -14,8 +14,8 @@ Para rodar, efetuo o clone deste projeto, efetue o build do projeto e execute.
 Segue a lista de comandos: 
 
 ```sh
-git clone 
-cd movie-battle
+git clone https://github.com/eduardo-galego/movies-battle
+cd movies-battle
 mvn clean install
 java -jar target/movies-battle-0.0.1-SNAPSHOT.jar
 ```
