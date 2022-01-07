@@ -68,7 +68,7 @@ public class MatchController {
     public ResponseEntity<QuizResponse> getLatestQuizFromMatch(@PathVariable Long id) {
         Quiz quiz = matchService.getLatestQuiz(id);
         return ResponseEntity.ok(
-                new QuizResponse(quiz.getMatch().getStatus().toString(), quiz.getMovieLeft().getTitle(), quiz.getMovieRight().getTitle(), quiz.getCorrect()));
+                new QuizResponse(quiz.getMatch().getId(), quiz.getId(), quiz.getMatch().getStatus().toString(), quiz.getMovieLeft().getTitle(), quiz.getMovieRight().getTitle(), quiz.getCorrect()));
     }
 
     @GetMapping("/{matchId}/quiz/{quizId}")
@@ -81,7 +81,7 @@ public class MatchController {
             throw new InvalidAttributeException("matchId", matchId.toString());
         }
         return ResponseEntity.ok(
-                new QuizResponse(quiz.getMatch().getStatus().toString(), quiz.getMovieLeft().getTitle(), quiz.getMovieRight().getTitle(), quiz.getCorrect()));
+                new QuizResponse(quiz.getMatch().getId(), quiz.getId(), quiz.getMatch().getStatus().toString(), quiz.getMovieLeft().getTitle(), quiz.getMovieRight().getTitle(), quiz.getCorrect()));
     }
 
     @PostMapping("/{id}/quiz")
@@ -90,6 +90,6 @@ public class MatchController {
         quiz = matchService.applyChoice(quiz, choice);
         return ResponseEntity
                 .created(URI.create("/v1/match/" + id))
-                .body(new QuizResponse(quiz.getMatch().getStatus().toString(), quiz.getMovieLeft().getTitle(), quiz.getMovieRight().getTitle(), quiz.getCorrect()));
+                .body(new QuizResponse(quiz.getMatch().getId(), quiz.getId(), quiz.getMatch().getStatus().toString(), quiz.getMovieLeft().getTitle(), quiz.getMovieRight().getTitle(), quiz.getCorrect()));
     }
 }
